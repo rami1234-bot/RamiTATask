@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     backgroundColor: 'white',
     marginBottom: 10,
-    marginTop: 30, // Add margin to move the search bar down
+    marginTop: 130,
   },
   b: {
     backgroundColor: '#009688',
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     marginBottom: 20,
-    marginTop: 10, // Add margin to move the search button down
+    marginTop: 110, 
   },
   bt: {
     color: 'white',

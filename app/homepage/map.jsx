@@ -25,7 +25,7 @@ export default function ToDoList() {
     setNewTask('');
   };
 
-  // Toggle task completion
+
   const toggleTaskCompletion = (id) => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
@@ -34,19 +34,18 @@ export default function ToDoList() {
     );
   };
 
-  // Delete a task
   const deleteTask = (id) => {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
 
-  // Filtered tasks based on search query
+
   const filteredTasks = tasks.filter((task) =>
     task.text.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
-      {/* Search bar */}
+      {}
       <TextInput
         style={styles.searchBar}
         placeholder="Search tasks"
@@ -54,7 +53,7 @@ export default function ToDoList() {
         onChangeText={setSearchQuery}
       />
 
-      {/* Task input */}
+      {}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.taskInput}
@@ -67,7 +66,7 @@ export default function ToDoList() {
         </TouchableOpacity>
       </View>
 
-      {/* Task list */}
+      {}
       <FlatList
         data={filteredTasks}
         keyExtractor={(item) => item.id}
@@ -101,7 +100,7 @@ export default function ToDoList() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E0F7FA', // Light blue background
+    backgroundColor: '#E0F7FA',
     padding: 20,
   },
   searchBar: {
@@ -128,7 +127,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   addButton: {
-    backgroundColor: '#009688', // Teal background
+    backgroundColor: '#009688', 
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
@@ -156,7 +155,7 @@ const styles = StyleSheet.create({
     width: 20,
     borderRadius: 5,
     borderWidth: 2,
-    borderColor: '#009688', // Teal border for checkbox
+    borderColor: '#009688', 
     marginRight: 10,
   },
   taskText: {
@@ -164,7 +163,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   deleteText: {
-    color: '#F44336', // Red for delete text
+    color: '#F44336', 
     fontWeight: 'bold',
   },
 });

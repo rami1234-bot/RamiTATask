@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, Alert, ActivityIndicator, Image } from 'react-native';
-import { Text, View } from '@/components/Themed'; // Adjust this import according to your project structure
-import { Client, Account, ID } from 'react-native-appwrite'; // Import Appwrite SDK
-import { router, Router } from 'expo-router';
-// Initialize Appwrite client
+import { Text, View } from '@/components/Themed';
+import { Client, Account, ID } from 'react-native-appwrite';
+import { router } from 'expo-router';
+
 const client = new Client();
 client
-  .setEndpoint('https://cloud.appwrite.io/v1') // Your Appwrite endpoint
-  .setProject('676b38af0002477f6ae9'); // Your Project ID
+  .setEndpoint('https://cloud.appwrite.io/v1')
+  .setProject('676b38af0002477f6ae9');
 
 const account = new Account(client);
 
@@ -15,8 +15,8 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [name, setName] = useState(''); // Add name field for registration
-  const [loading, setLoading] = useState(false); // Loading state
+  const [name, setName] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSignUp = async () => {
     if (!email || !password || !confirmPassword || !name) {
@@ -24,7 +24,6 @@ export default function SignUp() {
       return;
     }
 
-    // Basic email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       Alert.alert('Error', 'Please enter a valid email address.');
@@ -41,26 +40,24 @@ export default function SignUp() {
       return;
     }
 
-    setLoading(true); // Set loading to true
+    setLoading(true);
 
     try {
-      // Create a new Appwrite user
       const user = await account.create(ID.unique(), email, password, name);
       Alert.alert('Success', `Welcome, ${user.name}! Your account has been created.`);
       router.replace('/homepage/main');
     } catch (error) {
-      Alert.alert( 'Registration failed. Please try again.');
+      Alert.alert('Registration failed. Please try again.');
       console.error('Sign-Up Error:', error);
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false);
     }
   };
 
   return (
     <View style={styles.container}>
-      {/* Add your logo image here */}
       <Image
-        source={require('../../images/lolo.png')} // Adjust the path to your logo image
+        source={require('../../images/lolo.png')}
         style={styles.logo}
         resizeMode="contain"
       />
@@ -71,7 +68,7 @@ export default function SignUp() {
       <TextInput
         style={styles.input}
         placeholder="Name"
-        placeholderTextColor="#A0A0A0" // Teal placeholder text
+        placeholderTextColor="#A0A0A0"
         value={name}
         onChangeText={setName}
         accessibilityLabel="Name Input"
@@ -80,7 +77,7 @@ export default function SignUp() {
       <TextInput
         style={styles.input}
         placeholder="Email"
-        placeholderTextColor="#A0A0A0" // Teal placeholder text
+        placeholderTextColor="#A0A0A0"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
@@ -91,7 +88,7 @@ export default function SignUp() {
       <TextInput
         style={styles.input}
         placeholder="Password"
-        placeholderTextColor="#A0A0A0" // Teal placeholder text
+        placeholderTextColor="#A0A0A0"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -101,7 +98,7 @@ export default function SignUp() {
       <TextInput
         style={styles.input}
         placeholder="Confirm Password"
-        placeholderTextColor="#A0A0A0" // Teal placeholder text
+        placeholderTextColor="#A0A0A0"
         value={confirmPassword}
         onChangeText={setConfirmPassword}
         secureTextEntry
@@ -111,7 +108,7 @@ export default function SignUp() {
 
       <TouchableOpacity style={styles.button} onPress={handleSignUp} disabled={loading}>
         {loading ? (
-          <ActivityIndicator size="small" color="#FFFFFF" /> // Loading indicator consistent with the button
+          <ActivityIndicator size="small" color="#FFFFFF" />
         ) : (
           <Text style={styles.buttonText}>Sign Up</Text>
         )}
@@ -125,7 +122,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: '#F0F8FF', // Light blue background
+    backgroundColor: '#F0F8FF',
     padding: 16,
   },
   logo: {
@@ -137,27 +134,27 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#008080', // Teal title
+    color: '#008080',
   },
   separator: {
     marginVertical: 30,
     height: 1,
     width: '80%',
-    backgroundColor: '#D3D3D3', // Light gray separator
+    backgroundColor: '#D3D3D3',
   },
   input: {
     height: 50,
-    borderColor: '#008080', // Teal border
+    borderColor: '#008080',
     borderWidth: 1,
     borderRadius: 5,
     marginBottom: 12,
     paddingHorizontal: 10,
     width: '80%',
-    backgroundColor: '#FFFFFF', // White background
-    color: '#000000', // Black text
+    backgroundColor: '#FFFFFF',
+    color: '#000000',
   },
   button: {
-    backgroundColor: '#008080', // Teal button
+    backgroundColor: '#008080',
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -165,7 +162,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: '#FFFFFF', // White text on button
+    color: '#FFFFFF',
     fontWeight: 'bold',
     textAlign: 'center',
   },

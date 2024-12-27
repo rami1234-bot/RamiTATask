@@ -9,9 +9,10 @@ how to use app: (user view):
 
 
 how to run app : (dev view)
-1.run the command : npx expo start 
-2.press s to go to expo go not development build
-3.use expo go and scan the qr code
+1.run the commant : npm install and wait a bit
+2.run the command : npx expo start 
+3.press s to go to expo go not development build
+4.use expo go and scan the qr code
 
 
 used : openmapweather api/ appwrite database package

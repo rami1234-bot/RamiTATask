@@ -8,16 +8,14 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/components/useColorScheme';
 
-// Exporting ErrorBoundary for error handling in the navigation tree.
 export {
   ErrorBoundary,
 } from 'expo-router';
 
 export const unstable_settings = {
-  initialRouteName: '(tabs)', // Ensure the tabs screen is the initial route
+  initialRouteName: '(tabs)',
 };
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -26,46 +24,40 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
-  // Handle any errors in loading fonts.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
 
-  // Hide the splash screen when fonts are loaded.
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
     }
   }, [loaded]);
 
-  // Return null while fonts are loading.
   if (!loaded) {
-    return null; // Optionally, you can return a loader or splash screen here.
+    return null;
   }
 
   return <RootLayoutNav />;
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme(); // Get the current color scheme (light/dark)
+  const colorScheme = useColorScheme();
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
-        {/* (tabs) screen */}
         <Stack.Screen 
           name="(tabs)" 
-          options={{ headerShown: false }} // Hide header for the tabs screen
+          options={{ headerShown: false }}
         />
-        {/* Modal screen */}
         <Stack.Screen 
           name="modal" 
-          options={{ presentation: 'modal' }} // This makes the modal presentation style
+          options={{ presentation: 'modal' }}
         />
-        {/* Homepage screen */}
         <Stack.Screen 
           name="homepage" 
-          options={{ headerShown: false }} // Hide header for the homepage screen
+          options={{ headerShown: false }}
         />
       </Stack>
     </ThemeProvider>
