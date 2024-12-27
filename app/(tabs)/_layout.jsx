@@ -12,22 +12,21 @@ export default function TabLayout() {
 
   return (
     <>
-      {/* Line separating the tab bar from the screens */}
       <View
         style={{
-          height: 4, // Increased height for a thicker line
-          backgroundColor: '#009688', // Teal color for the line
+          height: 4,
+          backgroundColor: '#009688',
         }}
       />
 
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: '#009688', // Teal color for active icons
+          tabBarActiveTintColor: '#009688',
           tabBarStyle: {
-            backgroundColor: '#E0F7FA', // Light blue background for the tab bar
-            paddingBottom: 10, // Optional: Keep bottom padding if needed
-            paddingTop: 20, // Increase top padding for more space above the tab bar
-            height: 70, // Optional: Increase height of the tab bar for a more pronounced look
+            backgroundColor: '#E0F7FA',
+            paddingBottom: 10,
+            paddingTop: 20,
+            height: 70,
           },
           headerShown: false,
         }}
